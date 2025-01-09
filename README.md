@@ -33,7 +33,7 @@ This tool helps you identify and remove duplicate files in your Downloads folder
 2. Clone this repository or download the script.
 3. Run the script using Python:
    ```
-   python duplicate_file_cleaner.py
+   python delete_duplicates.py
    ```
 
 ### Option 2: Use the Executable
