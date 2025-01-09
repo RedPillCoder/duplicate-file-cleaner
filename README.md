@@ -41,6 +41,7 @@ This tool helps you identify and remove duplicate files in your Downloads folder
 2. Double-click the executable to run it.
 
 For both options:
+
 4. The tool will scan your Downloads folder and display any duplicates found.
 5. If duplicates are found, you'll be prompted to confirm deletion of the older copies.
 
