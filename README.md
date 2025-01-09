@@ -1,48 +1,67 @@
-# Duplicate File Cleaner for Windows Downloads
+# Duplicate File Cleaner
 
-This repository contains a safe batch script for Windows that automatically checks your Downloads folder for duplicate files and removes the older versions, keeping only the most recent copies.
+This tool helps you identify and remove duplicate files in your Downloads folder, keeping only the most recently modified version of each file.
+
+## Table of Contents
+1. [Features](#features)
+2. [How it Works](#how-it-works)
+3. [Usage](#usage)
+   - [Option 1: Run the Python Script](#option-1-run-the-python-script)
+   - [Option 2: Use the Executable](#option-2-use-the-executable)
+4. [Functions](#functions)
+5. [Important Notes](#important-notes)
+6. [Requirements](#requirements)
+7. [Contributing](#contributing)
 
 ## Features
+- Scans the user's Downloads folder for duplicate files
+- Uses MD5 hash to identify identical files
+- Keeps the most recently modified version of each duplicate file
+- Provides an option to delete older duplicates
 
-- Scans the current user's Downloads folder for duplicate files
-- Compares files based on content, not just file names
-- Deletes older duplicates, preserving the most recent version
-- Works with all file types (e.g., .docx, .txt, .pdf, etc.)
-- Safe operation with built-in checks and confirmations
+## How it Works
+1. The script walks through the Downloads folder and its subfolders.
+2. It generates an MD5 hash for each file encountered.
+3. Files with identical MD5 hashes are grouped together.
+4. For each group of duplicates, the most recently modified file is kept, while others are marked for potential deletion.
+5. The user is presented with a list of duplicate files and asked for confirmation before deletion.
 
 ## Usage
 
-1. Download the `clean_duplicates.bat` file from this repository
-2. Double-click the file to run it
-3. Follow the on-screen prompts to confirm the operation
-4. The script will automatically scan your Downloads folder and remove older duplicates
+### Option 1: Run the Python Script
+1. Ensure you have Python installed on your system.
+2. Clone this repository or download the script.
+3. Run the script using Python:
+   ```
+   python duplicate_file_cleaner.py
+   ```
 
-## Warning
+### Option 2: Use the Executable
+1. Download the `delete_duplicates.exe` file from the releases section.
+2. Double-click the executable to run it.
 
-Always ensure you have backups of important files before running any script that deletes files. While this script is designed to be safe, unforeseen circumstances can occur.
+For both options:
+4. The tool will scan your Downloads folder and display any duplicates found.
+5. If duplicates are found, you'll be prompted to confirm deletion of the older copies.
 
-## How It Works
+## Functions
+- `generate_md5(file_path)`: Generates an MD5 hash for a given file.
+- `find_duplicates(folder_path)`: Identifies duplicate files in the specified folder.
+- `delete_files(files)`: Deletes the specified list of files.
+- `main()`: Orchestrates the scanning and deletion process.
 
-The script uses PowerShell commands within a batch file to:
-
-1. Locate the current user's Downloads folder
-2. Generate hash values for all files in the folder
-3. Compare hash values to identify duplicates
-4. For each set of duplicates, keep the newest file and delete the older ones
+## Important Notes
+- This tool will only delete files after user confirmation.
+- The tool keeps the most recently modified version of each duplicate file.
+- Use this tool with caution, as deleted files cannot be recovered.
 
 ## Requirements
+For running the Python script:
+- Python 3.x
+- Standard Python libraries: os, hashlib, time
 
-- Windows
-- PowerShell 3.0 or later (pre-installed on Windows 8 and above)
-
-## Customization
-
-You can modify the script to target different folders or adjust its behavior. Open the `clean_duplicates.bat` file in a text editor to make changes.
+For running the executable:
+- No additional requirements. Just download and run.
 
 ## Contributing
-
-Contributions to improve the script or add features are welcome. Please submit a pull request or open an issue to discuss proposed changes.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Feel free to fork this repository and submit pull requests for any improvements or bug fixes.
