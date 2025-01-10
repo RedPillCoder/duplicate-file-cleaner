@@ -15,14 +15,14 @@ This tool helps you identify and remove duplicate files in your Downloads folder
 
 ## Features
 - Scans the user's Downloads folder for duplicate files
-- Uses MD5 hash to identify identical files
+- Uses SHA-1 hash to identify identical files
 - Keeps the most recently modified version of each duplicate file
 - Provides an option to delete older duplicates
 
 ## How it Works
 1. The script walks through the Downloads folder and its subfolders.
-2. It generates an MD5 hash for each file encountered.
-3. Files with identical MD5 hashes are grouped together.
+2. It generates an SHA-1 hash for each file encountered.
+3. Files with identical SHA-1 hashes are grouped together.
 4. For each group of duplicates, the most recently modified file is kept, while others are marked for potential deletion.
 5. The user is presented with a list of duplicate files and asked for confirmation before deletion.
 
@@ -46,7 +46,7 @@ For both options:
 5. If duplicates are found, you'll be prompted to confirm deletion of the older copies.
 
 ## Functions
-- `generate_md5(file_path)`: Generates an MD5 hash for a given file.
+- `generate_sha1(file_path)`: Generates an SHA-1 hash for a given file.
 - `find_duplicates(folder_path)`: Identifies duplicate files in the specified folder.
 - `delete_files(files)`: Deletes the specified list of files.
 - `main()`: Orchestrates the scanning and deletion process.
