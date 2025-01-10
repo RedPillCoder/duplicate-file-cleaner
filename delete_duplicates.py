@@ -2,13 +2,13 @@ import os
 import hashlib
 import time
 
-def generate_md5(file_path):
-    """Generate MD5 hash for a file."""
-    hash_md5 = hashlib.md5()
+def generate_sha1(file_path):
+    """Generate SHA-1 hash for a file."""
+    hash_sha1 = hashlib.sha1()
     with open(file_path, "rb") as f:
         for chunk in iter(lambda: f.read(4096), b""):
-            hash_md5.update(chunk)
-    return hash_md5.hexdigest()
+            hash_sha1.update(chunk)
+    return hash_sha1.hexdigest()
 
 def find_duplicates(folder_path):
     """Find duplicate files in the specified folder."""
@@ -18,7 +18,7 @@ def find_duplicates(folder_path):
     for root, _, files in os.walk(folder_path):
         for file in files:
             file_path = os.path.join(root, file)
-            file_hash = generate_md5(file_path)
+            file_hash = generate_sha1(file_path)  # Change to SHA-1
             last_modified = os.path.getmtime(file_path)
 
             if file_hash in files_by_hash:
