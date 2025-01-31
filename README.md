@@ -20,7 +20,8 @@ This tool helps you identify and remove duplicate files in your Downloads folder
 - Uses SHA-1 hash to identify identical files.
 - Keeps the most recently modified version of each duplicate file.
 - Provides options to delete older duplicates, move them to the trash, or back them up to a specified folder.
-- Logs actions taken for auditing and debugging purposes.
+- Enhanced user interaction with clear prompts for actions.
+- Logs actions taken for auditing and debugging purposes, stored in `deleted_files.log`.
 
 ## How it Works
 
@@ -55,8 +56,11 @@ For both options:
 ## Functions
 
 - `generate_sha1(file_path)`: Generates an SHA-1 hash for a given file.
-- `find_duplicates(folder_path)`: Identifies duplicate files in the specified folder.
+- `find_duplicates(folder_path, file_types=None)`: Identifies duplicate files in the specified folder, optionally filtering by file type.
 - `delete_files(files, move_to_trash=False, backup_folder=None)`: Deletes or moves the specified list of files based on user input.
+- `log_and_print(message)`: Logs a message and prints it to the console.
+- `get_user_confirmation(prompt)`: Gets a yes/no confirmation from the user.
+- `get_file_types()`: Prompts the user for file types to filter during the duplicate search.
 - `main()`: Orchestrates the scanning and deletion process.
 
 ## Important Notes
