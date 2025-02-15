@@ -24,6 +24,11 @@ def generate_sha1(file_path: str) -> str:
             hash_sha1.update(chunk)
     return hash_sha1.hexdigest()
 
+def files_are_identical(file1: str, file2: str) -> bool:
+    """Check if two files are identical by comparing their contents."""
+    with open(file1, 'rb') as f1, open(file2, 'rb') as f2:
+        return f1.read() == f2.read()
+
 def find_duplicates(folder_path: str, file_types: Optional[List[str]] = None) -> List[Tuple[str, float]]:
     """Find duplicate files in the specified folder, optionally filtering by file type."""
     files_by_hash = {}
@@ -38,7 +43,13 @@ def find_duplicates(folder_path: str, file_types: Optional[List[str]] = None) ->
             files_by_hash.setdefault(file_hash, []).append((file_path, last_modified))
 
     # Identify duplicates
-    duplicates = [item for sublist in files_by_hash.values() if len(sublist) > 1 for item in sublist[1:]]
+    duplicates = []
+    for sublist in files_by_hash.values():
+        if len(sublist) > 1:
+            # Check for identical files
+            for i in range(1, len(sublist)):
+                if files_are_identical(sublist[0][0], sublist[i][0]):
+                    duplicates.append(sublist[i])
     return duplicates
 
 def log_and_print(message: str) -> None:
@@ -144,4 +155,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
